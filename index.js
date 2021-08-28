@@ -7,6 +7,9 @@ const Task = require('./models/task');
 // ### Create express app ###
 const app = express();
 
+// ### Parse requests ###
+app.use(express.urlencoded({ extended: true }));
+
 // ### Handle views by hbs ###
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
@@ -20,8 +23,20 @@ app.get('/', (req, res) => {
       .then((tasks) => {
          res.render('home', { tasks });
       })
-      .catch((error) => {
-         console.log('There was an error dealing with MongoDB.');
+      .catch(error => {
+         console.log('There was an error dealing with MongoDB.', error);
+      });
+});
+
+// ### Route handler create task ###
+app.post('/create-to-do-list-item', (req, res) => {
+   const title = req.body.title;
+   Task.create({ title })
+      .then(() => {
+         res.redirect('/');
+      })
+      .catch(error => {
+         console.log('There was an error dealing with MongoDB.', error);
       });
 });
 
