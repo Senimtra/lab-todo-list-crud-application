@@ -46,10 +46,36 @@ app.post('/task/:id/delete', (req, res) => {
    Task.findByIdAndDelete(taskId)
       .then(() => {
          res.redirect('/');
-      }).catch(error => {
+      })
+      .catch(error => {
          console.log('There was an error dealing with MongoDB.', error);
       })
-})
+});
+
+// ### Route handler get task update ###
+app.get('/task/:id/update', (req, res) => {
+   const taskId = req.params.id;
+   Task.findById(taskId)
+      .then((task) => {
+         res.render('task-update', { task })
+      })
+      .catch(error => {
+         console.log('There was an error dealing with MongoDB.', error);
+      })
+});
+
+// ### Route handler post task update ###
+app.post('/task/:id/update', (req, res) => {
+   const taskId = req.params.id;
+   const title = req.body.title;
+   Task.findByIdAndUpdate(taskId, { title })
+      .then(() => {
+         res.redirect('/');
+      })
+      .catch(error => {
+         console.log('There was an error dealing with MongoDB.', error);
+      })
+});
 
 // ### MongoDB URI string ###
 const MONGODB_URI = 'mongodb://localhost:27017/todo-list';
