@@ -40,6 +40,17 @@ app.post('/create-to-do-list-item', (req, res) => {
       });
 });
 
+// ### Route handler delete task ###
+app.post('/task/:id/delete', (req, res) => {
+   const taskId = req.params.id;
+   Task.findByIdAndDelete(taskId)
+      .then(() => {
+         res.redirect('/');
+      }).catch(error => {
+         console.log('There was an error dealing with MongoDB.', error);
+      })
+})
+
 // ### MongoDB URI string ###
 const MONGODB_URI = 'mongodb://localhost:27017/todo-list';
 

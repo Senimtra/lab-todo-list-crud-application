@@ -3,7 +3,11 @@
 {{! ### Task list ### }}
 <ol>
    {{#each tasks}}
-      <li>{{title}}</li>
+      <li>{{title}}
+         {{! ### Delete task button ### }}
+         <form method='POST' action='/task/{{this.id}}/delete'>
+            <button type='submit'>Remove task</button>
+         </form></li>
    {{/each}}
 </ol>
 
