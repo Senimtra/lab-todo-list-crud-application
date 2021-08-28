@@ -1,0 +1,28 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   background-color: dimgrey;
+}
+
+.task-item {
+   display: flex;
+}
+
+button {
+   display: inline-block;
+}
+
+.task-title {
+   width: 15em;
+   border: 1px solid darkgrey;
+   margin-right: 1em;
+   height: 1.4em;
+   padding: 0.1em;
+   background-color: whitesmoke;
+}
+
+.task-update {
+   margin-left: 2.4em;
+}

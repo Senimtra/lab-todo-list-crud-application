@@ -3,12 +3,12 @@ const express = require('express');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 const Task = require('./models/task');
+const nodeSassMiddleware = require('node-sass-middleware');
+const serveFavicon = require('serve-favicon');
+const morgan = require('morgan');
 
 // ### Create express app ###
 const app = express();
-
-// ### Parse requests ###
-app.use(express.urlencoded({ extended: true }));
 
 // ### Handle views by hbs ###
 app.set('view engine', 'hbs');
@@ -16,6 +16,26 @@ app.set('views', __dirname + '/views');
 
 // ### Set public folder ###
 app.use(express.static('public'));
+
+// ### Setup morgan log ###
+app.use(morgan('dev'));
+
+// ### Parse requests ###
+app.use(express.urlencoded({ extended: true }));
+
+// ### Serve Favicon from memory ###
+app.use(serveFavicon(__dirname + '/public/favicon.ico'));
+
+// ### Setup SCSS ###
+app.use(
+   nodeSassMiddleware({
+      dest: __dirname + 'public/styles',
+      src: __dirname + 'styles',
+      force: true,
+      outputStyle: 'extended',
+      prefix: '/styles'
+   })
+);
 
 // ### Route handler home view ###
 app.get('/', (req, res) => {
