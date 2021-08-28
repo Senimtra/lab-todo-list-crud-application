@@ -14,6 +14,18 @@ const app = express();
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
+// ### Setup SCSS ###
+app.use(
+   nodeSassMiddleware({
+      src: __dirname + '/styles',
+      dest: __dirname + '/public/styles',
+      // debug: true,
+      force: true,
+      outputStyle: 'extended',
+      prefix: '/styles'
+   })
+);
+
 // ### Set public folder ###
 app.use(express.static('public'));
 
@@ -25,17 +37,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // ### Serve Favicon from memory ###
 app.use(serveFavicon(__dirname + '/public/favicon.ico'));
-
-// ### Setup SCSS ###
-app.use(
-   nodeSassMiddleware({
-      dest: __dirname + 'public/styles',
-      src: __dirname + 'styles',
-      force: true,
-      outputStyle: 'extended',
-      prefix: '/styles'
-   })
-);
 
 // ### Route handler home view ###
 app.get('/', (req, res) => {

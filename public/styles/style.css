@@ -1,28 +1,41 @@
 * {
-   box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
-   background-color: dimgrey;
-}
+  background-color: #524c48;
+  font-family: sans-serif; }
 
 .task-item {
-   display: flex;
-}
+  display: flex; }
 
 button {
-   display: inline-block;
-}
+  display: inline-block; }
+
+ol {
+  padding: 0; }
 
 .task-title {
-   width: 15em;
-   border: 1px solid darkgrey;
-   margin-right: 1em;
-   height: 1.4em;
-   padding: 0.1em;
-   background-color: whitesmoke;
-}
+  width: 15em;
+  border: 1px solid darkgrey;
+  margin-right: 1em;
+  height: 1.4em;
+  padding: 0.1em;
+  background-color: whitesmoke; }
 
 .task-update {
-   margin-left: 2.4em;
-}
+  margin-left: 0.2em; }
+
+.container {
+  border-radius: 1em;
+  box-shadow: 1px 2px 4px 0px;
+  background-color: #dbd6cc;
+  width: 40em;
+  border: 1px solid black;
+  margin: 5em auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 0; }
+
+.button-create {
+  margin-left: 0.8em; }
